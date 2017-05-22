@@ -1,0 +1,24 @@
+<h2>기록된 익명 질문</h2>
+<div class ="container">
+  <% @every_post.each do |p| %>
+    <div class="well">
+      <%= p.content %><br>
+      
+      <form action="/reply_write" method ="POST">
+        <input type = "hidden" name ="id_of_post" value ="<%=p.id%>">
+        <div class="form-group">
+          <textarea name ="content" class = "form-control" rows = "7" cols = "120"></textarea><br>
+        </div>
+        <button type="submit" class="btn btn-default">
+          <span class="glyphicon glyphicon-send" aria-hidden="true"> 댓글 작성</span>
+        </button>
+      </form>
+      <% p.replies.each do |r|%>
+        <p><%= r.content%></p>
+      <%end%>
+    </div>
+  <% end %>
+</div>
+
+
+<h2><a href = "/">질문하러 가기</a></h2>
